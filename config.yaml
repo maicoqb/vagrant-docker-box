@@ -1,0 +1,27 @@
+---
+ip: "192.168.33.10"
+hostname: docker-host
+name: docker-host
+
+vm:
+  cpus: 1
+  memory: 1024
+
+# Set all ports to be forwarded
+ports:
+  - host: 80
+    guest: 80
+  - host: 8080
+    guest: 8080
+  - host: 3306
+    guest: 3306
+
+# Set all folders to be synced
+folders:
+  - from: Code
+    to: /Code
+
+# Set all scripts to be executed on machine
+# the order is relevant
+scripts:
+  - scripts/docker.sh
