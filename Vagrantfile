@@ -40,6 +40,16 @@ Vagrant.configure("2") do |config|
     end
   end
 
+  # Provision files from settings
+	if settings.has_key?("file-copy")
+    settings["file-copy"].each do |file|
+      source_file = File.expand_path(file['source'])
+      if File.exist? source_file then
+        config.vm.provision "file", source: file['source'], destination: file['destination']
+		  end
+    end
+  end
+
   # Provision scripts from settings
 	if settings.has_key?("scripts")
     settings["scripts"].each do |script|
