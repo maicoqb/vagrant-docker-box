@@ -52,4 +52,14 @@ Vagrant.configure("2") do |config|
     end
   end
   
+  # Provision scripts from settings
+	if settings.has_key?("always-script")
+    settings["always-script"].each do |script|
+      script = File.expand_path(script)
+      if File.exist? script then
+        config.vm.provision "shell", path: script, run: 'always'
+		  end
+    end
+  end
+  
 end
