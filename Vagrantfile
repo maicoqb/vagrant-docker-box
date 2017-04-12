@@ -39,8 +39,6 @@ Vagrant.configure("2") do |config|
       config.vm.synced_folder folder["from"], folder["to"]
     end
   end
-	# Disable vagrant default synced folder
-	config.vm.synced_folder '.', '/vagrant', disabled: true
 
   # Provision scripts from settings
 	if settings.has_key?("scripts")
@@ -51,5 +49,8 @@ Vagrant.configure("2") do |config|
 		  end
     end
   end
+  
+	# Disable vagrant default synced folder
+	config.vm.synced_folder '.', '/vagrant', disabled: true
   
 end
